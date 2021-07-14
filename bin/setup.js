@@ -16,7 +16,7 @@ console.log(`
   ${chalk.yellow(
     `app.contentful.com ${chalk.red("->")} Space Settings ${chalk.red(
       "->"
-    )} API keys`
+    )} API keys`<
   )}
 
   The ${chalk.green("Content Management API Token")}
