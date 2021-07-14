@@ -12,6 +12,11 @@ class RootIndex extends React.Component {
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
     const [author] = get(this, 'props.data.allContentfulPerson.edges')
 
+    const test = get(this, 'props.data');
+    console.log("in index");
+    console.log(this);
+    console.log(test);
+
     return (
       <Layout location={this.props.location}>
         <div style={{ background: '#fff' }}>

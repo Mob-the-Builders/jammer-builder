@@ -6,7 +6,6 @@ import Navigation from './navigation'
 class Template extends React.Component {
   render() {
     const { children } = this.props
-
     return (
       <Container>
         <Navigation />

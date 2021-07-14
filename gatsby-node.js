@@ -6,11 +6,13 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
+    const about = path.resolve('./src/templates/about-builders.js')
     resolve(
       graphql(
         `
           {
-            allContentfulBlogPost {
+            allContentfulBlogPost
+              {
               edges {
                 node {
                   title
@@ -18,6 +20,15 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
+            builders: allContentfulAbout
+              {
+                edges {
+                  node {
+                    title
+                    slug
+                  }
+                }
+              }
           }
         `
       ).then(result => {
@@ -33,6 +44,16 @@ exports.createPages = ({ graphql, actions }) => {
             component: blogPost,
             context: {
               slug: post.node.slug,
+            },
+          })
+        })
+        const builders = result.data.builders.edges
+        builders.forEach(builder => {
+          createPage({
+            path: `/about/${builder.node.slug}/`,
+            component: about,
+            context: {
+              slug: builder.node.slug,
             },
           })
         })
